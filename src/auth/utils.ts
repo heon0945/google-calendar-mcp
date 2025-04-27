@@ -1,5 +1,6 @@
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import os from "os";
 
 // Helper to get the project root directory reliably
 function getProjectRoot(): string {
@@ -19,7 +20,7 @@ export function getSecureTokenPath(): string {
 
 // Returns the absolute path for the GCP OAuth keys file.
 export function getKeysFilePath(): string {
-  const projectRoot = getProjectRoot();
-  const keysPath = path.join(projectRoot, "gcp-oauth.keys.json"); 
-  return keysPath; // Already absolute from getProjectRoot
+  const homeDir = process.env.HOME || process.env.USERPROFILE || os.homedir();
+  const configDir = path.join(homeDir, ".gmail-mcp");
+  return path.join(configDir, "credentials.json");
 } 
