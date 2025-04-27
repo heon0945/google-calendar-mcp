@@ -15,12 +15,14 @@ function getProjectRoot(): string {
 export function getSecureTokenPath(): string {
   const homeDir = process.env.HOME || process.env.USERPROFILE || os.homedir();
   const configDir = path.join(homeDir, ".gmail-mcp");
-  return path.join(configDir, "credentials.json");
+  const tokenPath = path.join(configDir, "credentials.json"); 
+  return tokenPath;
 }
 
 // Returns the absolute path for the GCP OAuth keys file.
 export function getKeysFilePath(): string {
   const homeDir = process.env.HOME || process.env.USERPROFILE || os.homedir();
-  const configDir = path.join(homeDir, ".gmail-mcp");
-  return path.join(configDir, "credentials.json");
+  const configDir = path.join(homeDir, ".gmail-mcp"); // 통일
+  const keysPath = path.join(configDir, "gcp-oauth.keys.json");
+  return keysPath;
 } 
